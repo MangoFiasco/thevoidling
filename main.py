@@ -25,9 +25,8 @@ def hello():
 def submitToTheVoid(summoner_name):
     response = requests.get("https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/"+summoner_name+"?api_key="+apiKey)
     r = response.json()
+    response = requests.get("https://na1.api.riotgames.com/lol/spectator/v3/active-games/by-summoner/"+str(r['id'])+"?api_key="+apiKey)
     return response.text
-    # response = requests.get("https://na1.api.riotgames.com/lol/spectator/v3/active-games/by-summoner/"+str(r['id'])+"?api_key="+apiKey)
-    # return response.text
     
 @app.route("/matchList/<account_id>",methods=['GET'])
 def matchList(account_id):
