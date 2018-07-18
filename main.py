@@ -8,7 +8,7 @@ import sys
 
 app = Flask(__name__)
 CORS(app)
-apiKey = "RGAPI-bba89bd1-9767-49b3-b9f8-394164610555"
+apiKey = "RGAPI-00afbc36-d22f-4f17-8605-e1feac2f799a"
 
 @app.route("/")
 def hello():
@@ -61,6 +61,7 @@ def oneVOne():
     p2['champName'] = request.args.get('p2CName')
     
     champListRes = requests.get("https://na1.api.riotgames.com/lol/static-data/v3/champions/?api_key="+apiKey)
+    print(champListRes.json())
     champList = champListRes.json()['data']
     
     p1ChampID = champList[p1['champName']]['id']
@@ -69,6 +70,7 @@ def oneVOne():
     p1Data = getPlayerRankData(p1['sumName'],p1ChampID)
     p2Data = getPlayerRankData(p2['sumName'],p2ChampID)
 
+    
     return json.dumps([p1Data,p2Data])
     
 
@@ -93,7 +95,6 @@ hackELO = {
 
 
 def getPlayerRankData(sumName,champID):
-
     response = {}
     sum = requests.get("https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/"+sumName+"?api_key="+apiKey).json()
     sumRankRes = requests.get("https://na1.api.riotgames.com/lol/league/v3/positions/by-summoner/"+str(sum['id'])+"?api_key="+apiKey)
