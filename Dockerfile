@@ -4,4 +4,6 @@ WORKDIR /thevoidling
 
 ADD . /thevoidling
 
+RUN  apk --no-cache add mysql mysql-client
+
 RUN  pip install --upgrade pip setuptools && pip install flask requests flask-cors
