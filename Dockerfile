@@ -1,9 +1,9 @@
-FROM python:3.6.5-alpine3.7
+FROM python:3.6.5
 
 WORKDIR /thevoidling
 
 ADD . /thevoidling
 
-RUN  apk --no-cache add mysql mysql-client
+RUN  apt-get update && apt-get install mysql-server mysql-client -y 
 
-RUN  pip install --upgrade pip setuptools && pip install flask requests flask-cors
+RUN  pip3 install --upgrade pip setuptools && pip3 install flask requests flask-cors sqlalchemy mysqlclient

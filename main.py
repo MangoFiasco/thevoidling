@@ -95,8 +95,6 @@ hackELO = {
     'CHALLENGER': 2600
 }
 
-
-
 def getPlayerRankData(sumName,champID):
     response = {}
     sum = requests.get("https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/"+sumName+"?api_key="+apiKey).json()
