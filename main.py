@@ -2,15 +2,21 @@ from flask import Flask
 from flask import request
 from flask_cors import CORS
 
+import "./voidlingSchema"
 import requests
 import json
 import sys
 
-
+import "./models/*"
 
 app = Flask(__name__)
 CORS(app)
-apiKey = "RGAPI-3228b6af-da86-45ab-928f-09ac0d68a084"
+apiKey = "RGAPI-91653a4d-82e7-42e6-bfac-2b71679c5b97"
+db = SQLAlchemy(app)
+db.create_all()
+
+
+user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 
 @app.route("/")
 def hello():
