@@ -9,10 +9,7 @@ services:
             - ./:/thevoidling
         ports:
             - '5000:5000'
-        environment: 
-            - FLASK_APP=main.py
-            - FLASK_DEBUG = 1
-        command: ["flask","run","--reload","--debugger","-h","0.0.0.0"]
+        command: ["python","run.py"]
         links:
             - mysql:database
     mysql:
