@@ -2,32 +2,24 @@ from flask import Flask
 from flask import request
 from flask_cors import CORS
 
-import "./voidlingSchema"
 import requests
 import json
 import sys
 
-import "./models/*"
-
 app = Flask(__name__)
 CORS(app)
-apiKey = "RGAPI-91653a4d-82e7-42e6-bfac-2b71679c5b97"
-db = SQLAlchemy(app)
-db.create_all()
+apiKey = "RGAPI-5a96797e-fabb-46e4-9968-6fce45e06660"
+# db = SQLAlchemy(app)
+# db.create_all
 
 
-user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+# user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 
-@app.route("/")
+@app.route("/MathGraduate")
 def hello():
-    r = {"MSG" : "HELLO WORLD!"}
-    toReturn = {}
-    response =  requests.get("https://na1.api.riotgames.com/lol/static-data/v3/champions/?api_key="+apiKey)
-    data = response.json()
-    for key in data['data']:
-        toReturn[data['data'][key]['id']] = data['data'][key]
+    r = {"MSG" : "Math WORLD!"}
 
-    return json.dumps(toReturn)
+    return json.dumps(r)
 
 @app.route("/submitToTheVoid/<summoner_name>",methods=['GET'])
 def submitToTheVoid(summoner_name):
