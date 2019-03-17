@@ -9,10 +9,9 @@ import json
 import sys
 
 
-apiKey = "RGAPI-f2d7ade2-8e2d-4054-a4de-6351b23ce2c5"
+apiKey = ""
 
 
-db.create_all()
 @app.route("/")
 def hello():
     r = {"MSG" : "Math WORLD!"}
