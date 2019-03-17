@@ -1,23 +1,22 @@
 version: "3"
 services:
-    web:
-        container_name: "TVoidling"
+    voidling:
+        container_name: web
         build:
             context: .
-            dockerfile: Dockerfile 
-        volumes: 
-            - ./:/thevoidling
+            dockerfile: Dockerfile
         ports:
             - '5000:5000'
-        command: ["python","run.py"]
-        links:
-            - mysql:database
-    mysql:
-        container_name: "voidlingDatabase"
-        image: mysql
-        environment:
-            - MYSQL_ROOT_PASSWORD=root
-        command: --default-authentication-plugin=mysql_native_password
-        restart: always
-        
-#ASDF
+        command: ["python","init_voidling.py"]
+        env_file: &env_files
+          - config/env
+          - config/env.custom
+        volumes:
+            - ./:/thevoidling
+    void_swarm:
+        container_name: 'backend'
+        image: thevoidling_voidling
+        command: ["python", "init_void_swarm.py"]
+        env_file: *env_files
+        volumes:
+            - ./:/thevoidling
